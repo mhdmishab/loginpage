@@ -1,0 +1,13 @@
+body{
+    background-color: rgb(234, 28, 28);
+}
+.container-fluid{
+    height: 750px;
+    background-image: url("/xuvt1.webp");
+    object-fit: cover;
+    
+
+    
+}
+
+
