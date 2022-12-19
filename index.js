@@ -5,7 +5,7 @@ const app=express();
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 
-let meg=""
+let meg="a";
 
 // app.use(express.static())
 
@@ -33,8 +33,10 @@ app.get("/",(req,res)=>{
     if(req.session.name){
         res.redirect('/home');
     }else{
+        console.log(meg);
+        let message="Invalid username or password";
        
-        res.render('index.ejs',{meg});
+        res.render('index.ejs',{meg:message});
     }
 })
 
@@ -150,7 +152,7 @@ app.post("/loginpost",(req,res)=>{
         req.session.name=Email;
         res.redirect('/home')
     }else{
-         meg="Invalid username and password";
+        
         res.redirect('/');
     }
     
