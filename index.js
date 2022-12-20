@@ -4,16 +4,17 @@ const path = require("path")
 const app=express();
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
+const alert=require("alert");
 
-let meg="a";
+let meg="";
 
 // app.use(express.static())
 
-app.use(urlencoded({extended: true}))
+app.use(urlencoded({extended: true}));
 
-app.set("view-engine","ejs")
-app.use(express.static('public'))
-app.set("views",(path.join(__dirname,'/views')))
+app.set("view-engine","ejs");
+app.use(express.static('public'));
+app.set("views",(path.join(__dirname,'/views')));
 
 app.use(sessions({
     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
@@ -36,7 +37,8 @@ app.get("/",(req,res)=>{
         console.log(meg);
         let message="Invalid username or password";
        
-        res.render('index.ejs',{meg:message});
+        res.render('index.ejs',{meg});
+        meg="";
     }
 })
 
@@ -152,8 +154,11 @@ app.post("/loginpost",(req,res)=>{
         req.session.name=Email;
         res.redirect('/home')
     }else{
-        
+        meg="invalid user"
         res.redirect('/');
+    
+        
+     
     }
     
 })
